@@ -1,6 +1,7 @@
 package peaksoft.peaksoft.api;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,7 @@ import peaksoft.peaksoft.services.DepartmentService;
 @Controller
 @RequestMapping("/departments/{hospId}")
 @RequiredArgsConstructor
+
 
 public class DepartmentAPI {
     private final DepartmentService departmentService;

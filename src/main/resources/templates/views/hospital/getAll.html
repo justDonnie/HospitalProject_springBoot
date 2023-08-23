@@ -23,19 +23,26 @@
 </head>
 <body>
 <center>
-    <h3>
-        <div class="container" style="width: 76%; margin: 10px auto"  th:background-size="cover">
-            <div class="card" style="width: 16rem;" th:each="hospital : ${allHospitals}">
-                <img th:src="${hospital.getImage()}" class="card-img-top" alt="Hospital Image">
-                <div class="card-body">
-                    <p class="card-title" th:text="${hospital.getName()}">Hospital Name</p>
-                    <h3 class="card-text" th:text="${hospital.getAddress()}">Hospital Address</h3>
-                    <a class="btn btn-success" th:href="@{/views/hospitals/{hospitalId}/enter(hospitalId=${hospital.getId()})}">Enter</a>
+    <div class="container mt-5">
+        <div class="row">
+            <th:block th:each="hospital : ${allHospitals}">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card">
+                        <img th:src="${hospital.getImage()}" class="card-img-top" alt="Hospital Image">
+                        <div class="card-body">
+                            <h5 class="card-title font-weight-bold mb-2" th:text="${hospital.getName()}">Hospital Name</h5>
+                            <p class="card-text small" th:text="${hospital.getAddress()}">Hospital Address</p>
+                            <a class="btn btn-success" th:href="@{/views/hospitals/{hospitalId}/enter(hospitalId=${hospital.getId()})}">Enter</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </th:block>
         </div>
+    </div>
+
+    <div class="text-center">
         <a class="btn btn-primary" href="/views/hospitals/new" role="button">Add Hospital</a>
-    </h3>
+    </div>
 </center>
 </body>
 
