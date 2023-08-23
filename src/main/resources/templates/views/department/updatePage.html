@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Page</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/departments/{hospId}/edit/{depId} (hospId = ${hospId},depId=${depId})}"
+      th:object="${currentDepartment}">
+
+    <div>
+        <label for="name">Name</label>
+        <input type="text" th:field="*{name}" id="name">
+    </div>
+
+    <button type="submit">Update Department</button>
+</form>
+<a class="btn btn-primary" href="/views/hospitals" role="button">Go Back</a>
+</body>
+</html>

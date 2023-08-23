@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Departments Page</title>
+    <link rel="stylesheet" href="daniel.css">
+    <style>
+        .container {
+            display: flex;
+        }
+
+        form {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px;
+            background: darkcyan;
+        }
+        .card-title {
+            font-size: 2rem;
+        }
+
+        .btn-primary{
+            border: 1px solid red;
+            width: 2rem;
+            margin: 10px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<center>
+    <h3>
+<div class="container" style="width: 80%; margin: 0 auto">
+    <div class="card" style="width: 18rem;"
+         th:each="department:${allDepartments}">
+        <div class="card-body">
+            <h5 class="card-title" th:text="${department.getName()}">Department</h5>
+
+            <form th:method="GET" th:action="@{/departments/{hospId}/enter/{depId}(hospId=${hospId},depId=${department.getId()})}">
+                <input type="submit" th:value="Enter">
+            </form>
+
+            <form th:method="GET" th:action="@{/departments/{hospId}/update/{depId}(hospId=${hospId},depId=${department.getId()})}">
+                <input type="submit" th:value="Update">
+            </form>
+
+            <form th:method="DELETE" th:action="@{/departments/{hospId}/delete/{depId}(hospId=${hospId},depId=${department.getId()})}">
+                <input type="submit" th:value="Delete">
+            </form>
+
+        </div>
+    </div>
+</div>
+    </h3>
+</center>
+<a class="btn btn-primary" th:href="@{/departments/{hospId}/new(hospId=${hospId})}" role="button">Add Department</a>
+
+<a class="btn btn-primary" href="/views/hospitals" role="button">Go Back</a>
+
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+

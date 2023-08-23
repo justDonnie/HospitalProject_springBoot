@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Hospital</title>
+</head>
+<body>
+<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+     <form th:method="POST" th:action="@{save}" th:object="${newHospital}"
+          style="width: 50%; padding: 20px; border: 1px solid #ccc; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+        <div style="margin-bottom: 10px;">
+            <label for="name">Name</label><br>
+            <input type="text" class="form-control" th:field="*{name}" id="name" style="width: 100%; padding: 5px;">
+        </div>
+        <div style="margin-bottom: 10px;">
+            <label for="address">Address</label><br>
+            <input type="text" class="form-control" th:field="*{address}" id="address" style="width: 100%; padding: 5px;">
+        </div>
+        <div style="margin-bottom: 10px;">
+            <label for="image">Image</label><br>
+            <input type="text" class="form-control" th:field="*{image}" id="image" style="width: 100%; padding: 5px;">
+        </div>
+        <button class="btn btn-success" type="submit" style="padding: 10px 20px; background-color: chartreuse; color: black; border: none; border-radius: 10px; cursor: pointer;">Save Hospital</button>
+    </form>
+</div>
+<a class="btn btn-primary" href="/views/hospitals" role="button">Go Back</a>
+</body>
+</html>
+

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hospitals</title>
+</head>
+<body>
+
+
+<nav>
+    <ul>
+        <li><a th:href="@{/departments/{hospId}(hospId=${hospital.getId()})}">Departments</a></li>
+        <li><a href="#doctors">Doctors</a></li>
+        <li><a href="#patients">Patients</a></li>
+        <li><a href="#appointments">Appointments</a></li>
+    </ul>
+</nav>
+
+</body>
+
+<div>
+    <form th:method="DELETE"
+          th:action="@{/views/hospitals/delete/{hospitalId}(hospitalId=${hospital.getId()})}">
+        <input type="submit" class="btn btn-danger" th:value="Delete">
+    </form>
+
+    <a th:href="@{/views/hospitals/update/{hospitalId}(hospitalId=${hospital.getId()})}">
+        <input type="submit" class="btn btn-outline-success" th:value="Update">
+    </a>
+    <a class="btn btn-primary" href="/views/hospitals" role="button">Go Back</a>
+</div>
+
+</html>
