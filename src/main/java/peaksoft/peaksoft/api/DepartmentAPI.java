@@ -55,7 +55,7 @@ public class DepartmentAPI {
         departmentService.updateDepartment(depId,newDepartment);
         return "redirect:/departments/" + hospId;
     }
-    @DeleteMapping("/delete/{depId}")
+    @GetMapping("/delete/{depId}")
     public String deleteDep(@PathVariable Long depId,
                             @PathVariable("hospId") Long hospId){  //??
         departmentService.deleteDepartment(depId);

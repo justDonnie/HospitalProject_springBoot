@@ -46,7 +46,7 @@
                 <input type="submit" th:value="Update">
             </form>
 
-            <form th:method="DELETE" th:action="@{/departments/{hospId}/delete/{depId}(hospId=${hospId},depId=${department.getId()})}">
+            <form th:method="GET" th:action="@{/departments/{hospId}/delete/{depId}(hospId=${hospId},depId=${department.getId()})}">
                 <input type="submit" th:value="Delete">
             </form>
 

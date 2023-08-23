@@ -26,7 +26,7 @@ public class Department {
     )
     private Long id;
     private String name;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @ToString.Exclude
     private Hospital hospital;
 

@@ -34,7 +34,13 @@ public class HospitalServiceImpl implements HospitalService {
 
     @Override
     public void deleteHospital(Long id) {
-        hospitalRepository.deleteById(id);
+        if (hospitalRepository.existsById(id)) {
+            hospitalRepository.deleteById(id);
+        } else throw new NullPointerException(
+                "Hospital with id " + id + " doesn't exists!"
+        );
+
+
     }
 
     @Transactional

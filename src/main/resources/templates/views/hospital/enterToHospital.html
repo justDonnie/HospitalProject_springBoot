@@ -19,7 +19,7 @@
 </body>
 
 <div>
-    <form th:method="DELETE"
+    <form th:method="get"
           th:action="@{/views/hospitals/delete/{hospitalId}(hospitalId=${hospital.getId()})}">
         <input type="submit" class="btn btn-danger" th:value="Delete">
     </form>

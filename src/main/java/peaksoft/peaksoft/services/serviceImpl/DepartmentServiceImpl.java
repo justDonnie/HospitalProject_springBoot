@@ -7,6 +7,7 @@ import peaksoft.peaksoft.entities.Hospital;
 import peaksoft.peaksoft.repositories.DepartmentRepository;
 import peaksoft.peaksoft.repositories.HospitalRepository;
 import peaksoft.peaksoft.services.DepartmentService;
+import peaksoft.peaksoft.services.HospitalService;
 
 import java.util.List;
 
@@ -16,13 +17,14 @@ import java.util.List;
 public class DepartmentServiceImpl implements DepartmentService {
     private final DepartmentRepository departmentRepository;
     private final HospitalRepository hospitalRepository;
+    private final HospitalService hospitalService;
 
     @Override
     public void saveDepartment(Department department, Long hospId) {
-        Hospital hospital = hospitalRepository.findById(hospId).get();
+        Hospital hospital = hospitalRepository.findById(hospId).
+                orElseThrow(()->new NullPointerException(" The hospital with ID "+hospId+" is not found!!!"));
         department.setHospital(hospital);
         departmentRepository.save(department);
-
     }
 
     @Override
@@ -37,8 +39,18 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public void deleteDepartment(Long depId) {
-        departmentRepository.deleteById(depId);
+    public void deleteDepartment(Long id) throws NullPointerException {
+        try {
+            Department department = departmentRepository.findById(id)
+                    .orElseThrow(() -> new NullPointerException("Department not found"));
+
+            Hospital hospital = department.getHospital();
+            hospital.getDepartments().remove(department);
+            hospitalService.saveHospital(hospital);
+            departmentRepository.deleteById(id);
+        } catch (Exception e) {
+            throw new NullPointerException("Error while deleting department");
+        }
     }
 
     @Override

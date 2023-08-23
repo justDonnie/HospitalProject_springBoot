@@ -33,7 +33,7 @@ public class Hospital {
     @OneToMany(mappedBy = "hospital",cascade = CascadeType.REMOVE,fetch = FetchType.EAGER)
     private List<Patient>patients;
     @OneToMany(mappedBy = "hospital",
-            cascade = CascadeType.REMOVE,fetch = FetchType.EAGER
+            cascade = CascadeType.ALL,fetch = FetchType.EAGER
     )
     private List<Department> departments;
     @OneToMany
