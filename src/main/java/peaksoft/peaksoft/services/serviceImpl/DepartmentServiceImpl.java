@@ -29,7 +29,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public List<Department>getAllDepartments(Long hospId) {
-        return departmentRepository.findAll();
+        return departmentRepository.findAll(hospId);
     }
 
     @Override

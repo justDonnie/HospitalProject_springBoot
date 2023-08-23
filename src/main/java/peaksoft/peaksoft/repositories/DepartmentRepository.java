@@ -6,8 +6,12 @@ import peaksoft.peaksoft.entities.Department;
 
 import java.util.List;
 
+
 public interface DepartmentRepository extends JpaRepository<Department,Long> {
 
     @Query("select d from  Department d where d.hospital.id = :hospId and d.id = :depId")
     Department findDepartmentByHospitalId(Long depId, Long hospId);
+
+    @Query("select d from Department  d where d.hospital.id = :hospId")
+    List<Department> findAll(Long hospId);
 }
