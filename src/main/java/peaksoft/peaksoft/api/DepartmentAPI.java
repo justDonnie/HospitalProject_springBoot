@@ -32,7 +32,7 @@ public class DepartmentAPI {
     @PostMapping("/save")
     public String saveDepartment(@ModelAttribute Department department, @PathVariable("hospId") Long hospId) {
         departmentService.saveDepartment(department, hospId);
-        return "redirect:/departments/" + hospId;
+        return "redirect:/departments/"+hospId;
     }
 ///departments/{hospId}/enter/{depId}
     @GetMapping("/enter/{depId}")

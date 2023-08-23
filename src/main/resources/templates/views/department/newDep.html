@@ -7,7 +7,7 @@
 <body>
 
 
-<form th:method ="POST" th:action="@{/views/department/departments/{hospId}/save (hospId=${hospId})}" th:object="${newDep}">
+<form th:method ="POST" th:action="@{/departments/{hospId}/save (hospId=${hospId})}" th:object="${newDep}">
 
     <div>
         <label for="name">Name</label>
