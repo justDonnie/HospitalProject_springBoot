@@ -54,11 +54,4 @@ public class HospitalServiceImpl implements HospitalService {
         hospitalRepository.save(hospital);
     }
 
-//    @Override
-//    public List<Hospital> getAllHospitals(String name, String address) {
-//        if(name != null & address == null){
-//            return hospitalRepository.findAllByName(name);
-//        }
-//        return hospitalRepository.getAllHospitals();
-//    }
 }

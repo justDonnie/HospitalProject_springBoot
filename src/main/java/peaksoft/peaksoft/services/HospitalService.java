@@ -17,5 +17,4 @@ public interface HospitalService {
 
     void updateHospital(Long id,Hospital newHospital);
 
-//    List<Hospital> getAllHospitals(String name, String address);
 }

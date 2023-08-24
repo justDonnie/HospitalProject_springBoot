@@ -1,10 +1,13 @@
 package peaksoft.peaksoft.services.serviceImpl;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import peaksoft.peaksoft.entities.Department;
+import peaksoft.peaksoft.entities.Doctor;
 import peaksoft.peaksoft.entities.Hospital;
 import peaksoft.peaksoft.repositories.DepartmentRepository;
+import peaksoft.peaksoft.repositories.DoctorRepository;
 import peaksoft.peaksoft.repositories.HospitalRepository;
 import peaksoft.peaksoft.services.DepartmentService;
 import peaksoft.peaksoft.services.HospitalService;
@@ -15,6 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 
 public class DepartmentServiceImpl implements DepartmentService {
+    private final DoctorRepository doctorRepository;
     private final DepartmentRepository departmentRepository;
     private final HospitalRepository hospitalRepository;
     private final HospitalService hospitalService;
@@ -65,14 +69,17 @@ public class DepartmentServiceImpl implements DepartmentService {
     public Department findDepartmentByHospitalId(Long depId, Long hospId) {
         return departmentRepository.findDepartmentByHospitalId(depId, hospId);
     }
+    @Transactional
+    @Override
+    public void assignDocToDep(Long docId, Long depId) {
+        Department department = departmentRepository.findById(depId)
+                .orElseThrow(() -> new RuntimeException("The Department with ID " + depId + " is not found!!!"));
+        Doctor doctor = doctorRepository.findById(docId)
+                .orElseThrow(() -> new RuntimeException("The Doctor with ID " + depId + " is not found!!!"));
+        department.getDoctors().add(doctor);
+        doctor.getDepartments().add(department);
+        doctorRepository.save(doctor);
+        departmentRepository.save(department);
+    }
 
-//    @Override
-//    @Transactional
-//    public void updateDepartmentByHospId(Long depId,Long hospId, Department newDepartment) {
-//        Department department = departmentRepository.getDepartmentById(depId,hospId);
-//        if (department != null){
-//            department.setName(newDepartment.getName());
-//            departmentRepository.saveDepartment(department);
-//        }
-//    }
 }

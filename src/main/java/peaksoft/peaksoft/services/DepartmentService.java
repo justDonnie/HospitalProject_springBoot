@@ -18,6 +18,6 @@ public interface DepartmentService {
 
     Department findDepartmentByHospitalId(Long depId, Long hospId);
 
-//    void updateDepartmentByHospId(Long depId,Long hospId, Department newDepartment);
+    void assignDocToDep(Long docId, Long depId);
 
 }
