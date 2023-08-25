@@ -30,38 +30,42 @@ public class DepartmentAPI {
         model.addAttribute("hospId", hospId);
         return "views/department/newDep";
     }
-///{hospId}/save
+
+    ///{hospId}/save
     @PostMapping("/save")
     public String saveDepartment(@ModelAttribute Department department, @PathVariable("hospId") Long hospId) {
         departmentService.saveDepartment(department, hospId);
-        return "redirect:/departments/"+hospId;
+        return "redirect:/departments/" + hospId;
     }
-///departments/{hospId}/enter/{depId}
+
+    ///departments/{hospId}/enter/{depId}
     @GetMapping("/enter/{depId}")
     public String enterToDepsChapter(@PathVariable Long depId, @PathVariable Long hospId) {
-       departmentService.findDepartmentByHospitalId(depId, hospId);
+        departmentService.findDepartmentByHospitalId(depId, hospId);
         return "views/department/enterToDepsChapter";
     }
 
     @GetMapping("/update/{depId}")
-    public String updatePage (@PathVariable Long depId,@PathVariable Long hospId, Model model){
-        model.addAttribute("depId",depId);
-        model.addAttribute("currentDepartment",departmentService.getDepartmentById(depId));
+    public String updatePage(@PathVariable Long depId, @PathVariable Long hospId, Model model) {
+        model.addAttribute("depId", depId);
+        model.addAttribute("currentDepartment", departmentService.getDepartmentById(depId));
         return "views/department/updatePage";
     }
+
     //departments/{hospId}/edit/{depId}
     @PostMapping("/edit/{depId}")
-    public String editDep (@ModelAttribute("currentDepartment") Department newDepartment,
-                           @PathVariable Long depId,
-                           @PathVariable Long hospId){
-        departmentService.updateDepartment(depId,newDepartment);
+    public String editDep(@ModelAttribute("currentDepartment") Department newDepartment,
+                          @PathVariable Long depId,
+                          @PathVariable Long hospId) {
+        departmentService.updateDepartment(depId, newDepartment);
         return "redirect:/departments/" + hospId;
     }
+
     @GetMapping("/delete/{depId}")
     public String deleteDep(@PathVariable Long depId,
-                            @PathVariable("hospId") Long hospId){
+                            @PathVariable("hospId") Long hospId) {
         departmentService.deleteDepartment(depId);
-        return "redirect:/departments/" +hospId;
+        return "redirect:/departments/" + hospId;
     }
 
 }

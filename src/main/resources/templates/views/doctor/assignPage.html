@@ -3,23 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Assign Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 </head>
 <body>
 
-<h1> Assign</h1>
-<form th:action="@{/doctors/{hospId}/accept/{docId}(docId=${docId}, hospId=${hospId})}" method="post">
-<input type="hidden" name="docId" th:value="${docId}"/>
-    <div class="form-group">
-        <label for="depId">Select an Entity: </label>
-        <select id="depId" name="depId">
-            <option value="" >--Select a Department--</option>
-            <option th:each="dep:${allDepartments}" th:value="${dep.id}" th:text="${dep.getName()}" ></option>
-        </select>
-    </div>
-    <button type="submit"> Assign</button>
-</form>
 
-
+<div class="container mt-5">
+    <form class="w-50 mx-auto" th:action="@{/doctors/{hospId}/accept/{docId}(docId=${docId}, hospId=${hospId})}" method="post">
+        <input type="hidden" name="docId" th:value="${docId}"/>
+        <div class="mb-3">
+            <label for="depId" class="form-label">Select a Department:</label>
+            <select id="depId" name="depId" class="form-select">
+                <option value="" selected> choose </option>
+                <option th:each="dep:${allDepartments}" th:value="${dep.id}" th:text="${dep.getName()}"></option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-outline-success me-2">Assign</button>
+        <a class="btn btn-primary" href="/views/hospitals" role="button">Go Back</a>
+    </form>
+</div>
 
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
 </html>

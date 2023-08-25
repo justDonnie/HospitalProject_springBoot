@@ -17,5 +17,6 @@ public interface DoctorService {
 
     void updateDoctor(Long docId, Doctor newDoctor);
 
+    Doctor getDoctorByHospitalId(Long hospId,Long docId);
 
 }

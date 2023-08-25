@@ -10,4 +10,7 @@ public interface DoctorRepository extends JpaRepository<Doctor,Long> {
 
     @Query("select d from Doctor d where d.hospital.id=:hospId")
     List<Doctor> findAll(Long hospId);
+
+    @Query("select d from Doctor d where d.hospital.id=:hospId and d.id=:docId")
+    Doctor getDoctorByHospitalId(Long hospId,Long docId);
 }

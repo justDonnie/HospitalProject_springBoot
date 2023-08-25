@@ -31,6 +31,12 @@ public class DoctorAPI {
         doctorService.saveDoctor(doctor,hospId);
         return "redirect:/doctors/"+hospId;
     }
+    @GetMapping("/enter/{docId}")
+    public String enterToDocsChapter(@PathVariable Long docId, @PathVariable Long hospId){
+        doctorService.getDoctorByHospitalId(docId,hospId);
+        return "/views/doctor/enterToDocsChapter";
+    }
+
     @GetMapping("/update/{docId}")
     public String updatePage (@PathVariable Long docId,@PathVariable Long hospId, Model model){
         model.addAttribute("docId",docId);

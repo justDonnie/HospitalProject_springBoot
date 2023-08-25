@@ -2,6 +2,7 @@ package peaksoft.peaksoft.services.serviceImpl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import peaksoft.peaksoft.entities.Department;
 import peaksoft.peaksoft.entities.Doctor;
 import peaksoft.peaksoft.entities.Hospital;
 import peaksoft.peaksoft.repositories.AppointmentRepository;
@@ -65,5 +66,8 @@ public class DoctorServiceImpl implements DoctorService{
         doctor.setPosition(newDoctor.getPosition());
         doctor.setEmail(newDoctor.getEmail());
         doctorRepository.save(doctor);
+    }
+    public Doctor getDoctorByHospitalId(Long hospId, Long docId){
+        return doctorRepository.getDoctorByHospitalId(hospId,docId);
     }
 }
