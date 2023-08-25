@@ -38,7 +38,7 @@ public class DoctorAPI {
     }
 
     @GetMapping("/update/{docId}")
-    public String updatePage (@PathVariable Long docId,@PathVariable Long hospId, Model model){
+    public String updatePage(@PathVariable Long docId,@PathVariable Long hospId, Model model){
         model.addAttribute("docId",docId);
         model.addAttribute("currentDoctor",doctorService.getDoctorById(docId));
         return "views/doctor/docUpdatePage";
@@ -67,7 +67,7 @@ public class DoctorAPI {
     public String acceptAssign(@PathVariable Long docId, Long depId, @PathVariable String hospId){
         departmentService.assignDocToDep(docId,depId);
         return "redirect:/doctors/"+hospId;
+
+
     }
-
-
 }

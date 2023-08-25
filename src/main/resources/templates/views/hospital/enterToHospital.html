@@ -18,7 +18,7 @@
             <a class="list-group-item list-group-item-action" th:href="@{/doctors/{hospId}(hospId=${hospital.getId()})}">
                 <i class="bi bi-person me-2"></i> Doctors
             </a>
-            <a class="list-group-item list-group-item-action" href="#list-item-3">
+            <a class="list-group-item list-group-item-action" th:href="@{/patients/{hospId}(hospId=${hospital.getId()})}">
                 <i class="bi bi-people me-2"></i> Patients
             </a>
             <a class="list-group-item list-group-item-action" href="#list-item-4">

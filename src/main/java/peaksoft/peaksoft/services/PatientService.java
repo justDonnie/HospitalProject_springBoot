@@ -6,9 +6,9 @@ import peaksoft.peaksoft.entities.Patient;
 import java.util.List;
 
 public interface PatientService {
-    void savePatient(Patient patient);
+    void savePatient(Patient patient,Long hospId);
 
-    List<Patient> getAllPatients();
+    List<Patient> getAllPatients(Long hospId);
 
     Patient getPatientById(Long id);
 

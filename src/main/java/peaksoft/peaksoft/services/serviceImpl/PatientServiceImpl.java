@@ -15,12 +15,12 @@ public class PatientServiceImpl implements PatientService {
 
     private final PatientRepository patientRepository;
     @Override
-    public void savePatient(Patient patient) {
+    public void savePatient(Patient patient,Long hospId) {
 
     }
 
     @Override
-    public List<Patient> getAllPatients() {
+    public List<Patient> getAllPatients(Long hospId) {
         return null;
     }
 

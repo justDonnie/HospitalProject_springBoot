@@ -6,5 +6,4 @@ import peaksoft.peaksoft.entities.Patient;
 
 public interface PatientRepository extends JpaRepository<Patient,Long> {
 
-
 }

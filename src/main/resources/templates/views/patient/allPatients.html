@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Patients Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="daniel.css">
+    <style>
+        .container {
+            display: flex;
+        }
+        form {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px;
+            background: darkcyan;
+        }
+        .card-title {
+            font-size: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <ul class="list-group w-50">
+        <th:block th:each="patient:${allPatients}">
+            <li class="list-group-item">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 th:text="${patient.getFirstName() + ' ' + patient.getLastName()}">Patient</h5>
+                        <small class="text-muted" th:text="${patient.getPhoneNumber()}+''+,${patient.getEmail()}+''+,${patient.getGender()}"></small>
+                    </div>
+                    <div>
+                        <a class="btn btn-success btn-sm me-2" th:href="@{/patients/{hospId}/enter/{patId}(hospId=${hospId},patId=${patient.getId()})}">Enter</a>
+                        <a class="btn btn-primary btn-sm me-2" th:href="@{/patients/{hospId}/update/{patId}(hospId=${hospId},patId=${patient.getId()})}">Update</a>
+                        <a class="btn btn-primary btn-sm me-2" th:href="@{/patients/{hospId}/assign/{patId}(hospId=${hospId},patId=${patient.getId()})}">Assign</a>
+                        <a class="btn btn-danger btn-sm" th:href="@{/patients/{hospId}/delete/{patId}(hospId=${hospId},patId=${patient.getId()})}">Delete</a>
+                    </div>
+                </div>
+            </li>
+        </th:block>
+    </ul>
+</div>
+
+<center>
+    <div class="text-center mt-4">
+        <a class="btn btn-outline-success me-2" th:href="@{/patients/{hospId}/new(hospId=${hospId})}" role="button">Add Patients</a>
+        <a class="btn btn-primary" href="/views/hospitals" role="button">Go Back</a>
+    </div>
+</center>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous">
+</script>
+</body>
+
+
+
+
+
